@@ -1,0 +1,7 @@
+# prefer to use ACR.py from the local tree; failing that, use whatever
+# the PYTHONPATH says. This is only needed for the 'bb' module. Don't
+# use this pattern in other top-level sconstructs.
+import ACR
+
+acr = ACR.BuildEnv.MakeTree(ARGLIST, Environment, Dir('.'), 'alphaless')
+Export(['acr'])
