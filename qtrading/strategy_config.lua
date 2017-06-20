@@ -2,21 +2,21 @@ require('utils')
 
 strategy_config = { --this object is parsed into a StrategyConfig object
 
-    market = "MKT_DCE",
-    feed_orig = "ORIG_HTD",
-    feed_dest = "DEST_JINGYI",
-    feed_type = "SRC_ACR_DCE_L2",
+    market = "MKT_SZSE",
+    feed_orig = "ORIG_WKS",
+    feed_dest = "DEST_WKS",
+    feed_type = "SRC_SZSE_DIRECT",
     trade_server = "auto",
 
     instruments = {
-	"FUT_DCE_PP:201609"
+	"SZSE_000001",
     },
 
     sim_order_book = cons{
         AsiaQueueInstrOrderBookSpec,
         look_ahead_exchange = {
             enabled = true,
-            verbose = true,
+            verbose = false,
             use_fixed_look_ahead_time = true,
             fixed_look_ahead_time = Duration(.5), -- in seconds
             -- max_advance_duration = Duration(.5),

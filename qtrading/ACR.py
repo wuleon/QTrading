@@ -806,18 +806,6 @@ class BuildEnv(object):
         # hack, but MongoDB does not advertise its version number in a way that
         # can be obtained from one of their header files, so it is necessary to
         # resort to this approach
-        if self.centos:
-            self.mongo_dev_ver = os.popen("yum list | grep mongo | grep installed | head -1 | awk '{ print $2 }' | cut -f1 -d'-'").read().rstrip()
-        else:
-            self.mongo_dev_ver = os.popen("apt-cache policy mongodb-dev | grep Installed | awk '{ print $2 }' | cut -f2 -d':' | cut -f1 -d'-'").read().rstrip()
-        if re.match(r"(2\.0\.[0-9]+)", self.mongo_dev_ver) != None:
-            self.cppdefines += ["BB_MONGO_20"]
-        elif re.match(r"(2\.2\.[0-9]+)", self.mongo_dev_ver) != None:
-            self.cppdefines += ["BB_MONGO_22"]
-        elif re.match(r"(2\.4\.[0-9]+)", self.mongo_dev_ver) != None:
-            self.cppdefines += ["BB_MONGO_24"]
-        else:
-            raise RuntimeError, "Unkown MongoDB version!"
 
         pion_ver = os.popen("pkg-config --modversion pion-net").read().rstrip()
         pion_ver_parts = re.split('\.', pion_ver)
